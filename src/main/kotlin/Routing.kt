@@ -8,12 +8,12 @@ import io.ktor.server.routing.*
 import org.delcom.data.AppException
 import org.delcom.data.ErrorResponse
 import org.delcom.helpers.parseMessageToMap
-import org.delcom.services.PlantService
+import org.delcom.services.DrakorService
 import org.delcom.services.ProfileService
 import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
-    val plantService: PlantService by inject()
+    val drakorService: DrakorService by inject()
     val profileService: ProfileService by inject()
 
     install(StatusPages) {
@@ -46,34 +46,33 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-            call.respondText("API telah berjalan. Dibuat oleh Abdullah Ubaid.")
+            call.respondText("API Drakor telah berjalan. Dibuat oleh [Nama Anda].")
         }
 
-        // Route Plants
-        route("/plants") {
+        // Route Drakors
+        route("/drakors") {
             get {
-                plantService.getAllPlants(call)
+                drakorService.getAllDrakors(call)
             }
             post {
-                plantService.createPlant(call)
+                drakorService.createDrakor(call)
             }
             get("/{id}") {
-                plantService.getPlantById(call)
+                drakorService.getDrakorById(call)
             }
             put("/{id}") {
-                plantService.updatePlant(call)
+                drakorService.updateDrakor(call)
             }
             delete("/{id}") {
-                plantService.deletePlant(call)
+                drakorService.deleteDrakor(call)
             }
-
-            get("/{id}/image") {
-                plantService.getPlantImage(call)
+            get("/{id}/poster") {
+                drakorService.getDrakorPoster(call)
             }
         }
 
         // Route Profile
-        route("/profile"){
+        route("/profile") {
             get {
                 profileService.getProfile(call)
             }
