@@ -1,21 +1,20 @@
 package org.delcom.module
 
-import org.delcom.repositories.IPlantRepository
-import org.delcom.repositories.PlantRepository
-import org.delcom.services.PlantService
+import org.delcom.repositories.DrakorRepository
+import org.delcom.repositories.IDrakorRepository
+import org.delcom.services.DrakorService
 import org.delcom.services.ProfileService
 import org.koin.dsl.module
 
-
 val appModule = module {
-    // Plant Repository
-    single<IPlantRepository> {
-        PlantRepository()
+    // Drakor Repository
+    single<IDrakorRepository> {
+        DrakorRepository()
     }
 
-    // Plant Service
+    // Drakor Service
     single {
-        PlantService(get())
+        DrakorService(get())
     }
 
     // Profile Service

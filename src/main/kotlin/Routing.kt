@@ -46,7 +46,7 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-            call.respondText("API Drakor telah berjalan. Dibuat oleh [Nama Anda].")
+            call.respondText("API Drakor telah berjalan. Dibuat oleh [Lofelyn Enzely Ambarita].")
         }
 
         // Route Drakors
